@@ -1,0 +1,13 @@
+[Unit]
+Description=KEOSD GF
+[Service]
+Type=simple
+ExecStart=/var/server/bp/keosd --config-dir /var/server/bp/wallets --wallet-dir /var/server/bp/wallets
+TimeoutStopSec=300s
+Restart=on-success
+RestartSec=10
+#User=root
+#Group=root
+KillMode=control-group
+[Install]
+WantedBy=multi-user.target

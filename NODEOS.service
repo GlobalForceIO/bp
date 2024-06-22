@@ -1,0 +1,16 @@
+[Unit]
+Description=NODEOS GF
+[Service]
+Type=simple
+ExecStart=/var/server/bp/nodeos --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --verbose-http-errors --disable-replay-opts
+TimeoutStopSec=300s
+Restart=on-success
+RestartSec=10
+#IF NEED RESTART EACH HOUR
+#Restart=always
+#RuntimeMaxSec=3600
+#User=root
+#Group=root
+KillMode=control-group
+[Install]
+WantedBy=multi-user.target
