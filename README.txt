@@ -44,5 +44,15 @@ systemctl --user restart NODEOS
 
 journalctl --user -f -u NODEOS
 
+## Test API
+curl -X 'POST' 'http://127.0.0.1:18880/v1/trace_api/get_block' -d '{"block_num": 1}' | jq
+curl -X 'POST' 'http://127.0.0.1:18880/v1/chain/get_block' -d '{"block_num_or_id": 1}' | jq
+curl -X 'POST' 'http://127.0.0.1:18880/v1/history/get_transaction' -d '{"id": "a7cdbb87465514511e80acb20237f40d0e3a362042a64cbc32a5f9720a1b1299"}' | jq
+
+systemctl --user stop NODEOS
+
+# Replay this node
+/var/server/bp/nodeos --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --verbose-http-errors --replay-blockchain --disable-replay-opts
+
 # Sync from another node
 /var/server/bp/nodeos --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --verbose-http-errors --delete-all-blocks --disable-replay-opts
