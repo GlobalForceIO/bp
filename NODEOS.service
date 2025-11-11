@@ -2,7 +2,7 @@
 Description=NODEOS GF
 [Service]
 Type=simple
-ExecStart=/var/server/bp/nodeos --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --verbose-http-errors --disable-replay-opts
+ExecStart=/home/root/nodeos/nodeos --config /home/root/nodeos/config.ini --data-dir /home/root/nodeos/datadir --genesis-json /home/root/nodeos/genesis.json --verbose-http-errors --disable-replay-opts
 TimeoutStopSec=300s
 Restart=on-success
 RestartSec=10
