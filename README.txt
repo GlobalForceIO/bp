@@ -4,8 +4,14 @@ sudo apt-get update
 sudo apt-get install -y psmisc zip unzip curl jq libncurses5
 sudo apt-get update
 
-git clone git@github.com:GlobalForceIO/bp.git /var/server/bp
-cd /var/server/bp && git pull origin master
+##### Process manager
+ls /var/lib/systemd/linger
+loginctl list-users
+loginctl enable-linger root
+loginctl user-status root
+
+git clone git@github.com:GlobalForceIO/bp.git --branch v5.0.3b /var/server/bp
+cd /var/server/bp
 
 ##### If error
 libicuuc.so.60: cannot open shared
@@ -17,11 +23,8 @@ wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1
 sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb
 
 ##### From snapshot
-rm -r /var/server/bp/traces/* -R
-rm -r /var/server/bp/blocks/* -R
-rm -r /var/server/bp/state-history/* -R
 rm -r /var/server/bp/datadir/* -R
-/var/server/bp/nodeos --snapshot /var/server/bp/snapshots/snapshot-5.04.24.bin --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --genesis-json /var/server/nodeos/genesis.json --verbose-http-errors
+/var/server/bp/nodeos --snapshot /var/server/bp/datadir/snapshots/snapshot-5.04.24.bin --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --genesis-json /var/server/nodeos/genesis.json --verbose-http-errors
 
 cd /var/server/bp
 mkdir ~/eosio-wallet
@@ -56,3 +59,8 @@ systemctl --user stop NODEOS
 
 # Sync from another node
 /var/server/bp/nodeos --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --verbose-http-errors --delete-all-blocks --disable-replay-opts
+
+## Test API
+curl -X 'POST' 'http://127.0.0.1:18880/v1/trace_api/get_block' -d '{"block_num": 1}' | jq
+curl -X 'POST' 'http://127.0.0.1:18880/v1/chain/get_block' -d '{"block_num_or_id": 1}' | jq
+curl -X 'POST' 'http://127.0.0.1:18880/v1/history/get_transaction' -d '{"id": "a7cdbb87465514511e80acb20237f40d0e3a362042a64cbc32a5f9720a1b1299"}' | jq
