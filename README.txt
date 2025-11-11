@@ -21,7 +21,7 @@ rm -r /var/server/bp/traces/* -R
 rm -r /var/server/bp/blocks/* -R
 rm -r /var/server/bp/state-history/* -R
 rm -r /var/server/bp/datadir/* -R
-/var/server/bp/nodeos --snapshot /var/server/bp/snapshots/snapshot-5.04.24.bin --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --verbose-http-errors
+/var/server/bp/nodeos --snapshot /var/server/bp/snapshots/snapshot-5.04.24.bin --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --genesis-json /var/server/nodeos/genesis.json --verbose-http-errors
 
 cd /var/server/bp
 mkdir ~/eosio-wallet
