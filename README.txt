@@ -10,7 +10,7 @@ loginctl list-users
 loginctl enable-linger root
 loginctl user-status root
 
-git clone git@github.com:GlobalForceIO/bp.git --branch v5.0.3b /var/server/bp
+git clone git@github.com:GlobalForceIO/bp.git --branch v5.0.3c /var/server/bp
 cd /var/server/bp
 
 ##### If error
