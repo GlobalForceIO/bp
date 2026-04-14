@@ -26,15 +26,15 @@ sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb
 rm -r /var/server/bp/datadir/* -R
 /var/server/bp/nodeos --snapshot /var/server/bp/datadir/snapshots/snapshot-5.04.24.bin --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --genesis-json /var/server/nodeos/genesis.json --verbose-http-errors
 
-cd /var/server/bp
+cd /mnt/bp
 mkdir ~/eosio-wallet
 ### Make dirs for user
 mkdir ~/.config
 mkdir ~/.config/systemd
 mkdir ~/.config/systemd/user
-cp -rf /var/server/bp/*.service ~/.config/systemd/user/
+cp -rf /mnt/bp/*.service ~/.config/systemd/user/
 mkdir ~/bin
-cp -rf /var/server/bp/cleos ~/bin/
+cp -rf /mnt/bp/cleos ~/bin/
 ### Check exist path in PATH
 	echo $PATH
 	##If not exist - add

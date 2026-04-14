@@ -2,7 +2,7 @@
 Description=KEOSD GF
 [Service]
 Type=simple
-ExecStart=/home/root/nodeos/keosd --config-dir /home/root/nodeos/wallets --wallet-dir /home/root/nodeos/wallets
+ExecStart=/mnt/bp/keosd --config-dir /mnt/bp/wallets --wallet-dir /mnt/bp/wallets
 TimeoutStopSec=300s
 Restart=on-success
 RestartSec=10
