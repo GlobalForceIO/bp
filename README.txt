@@ -10,7 +10,7 @@ loginctl list-users
 loginctl enable-linger root
 loginctl user-status root
 
-git clone git@github.com:GlobalForceIO/bp.git --branch v5.0.3c /var/server/bp
+git clone git@github.com:GlobalForceIO/bp.git --branch v5.0.3dn /var/server/bp
 cd /var/server/bp
 
 ##### If error
@@ -24,7 +24,7 @@ sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb
 
 ##### From snapshot
 rm -r /var/server/bp/datadir/* -R
-/var/server/bp/nodeos --snapshot /var/server/bp/datadir/snapshots/snapshot-5.04.24.bin --config /var/server/bp/config.ini --data-dir /var/server/bp/datadir --genesis-json /var/server/nodeos/genesis.json --verbose-http-errors
+./nodeos --config /mnt/bp/config1.ini --data-dir /mnt/bp/datadir --genesis-json /mnt/bp/genesis.json --verbose-http-errors
 
 cd /mnt/bp
 mkdir ~/eosio-wallet
